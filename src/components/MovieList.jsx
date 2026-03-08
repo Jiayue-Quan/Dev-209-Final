@@ -14,10 +14,13 @@ const MovieList = ({title}) => {
     }
 
     const getCurrList = () => {
-        if (currListInd < 0) {
-            return tempImages.slice(currListInd).concat(tempImages.slice(0, 4 + (currListInd)));
+        if (currListInd == -4) {
+            return tempImages.slice(currListInd,);;
         }
-        if (currListInd + 4 > tempImages.length) {
+        if (currListInd + 4 > tempImages.length
+            ||
+            (currListInd < 0 && currListInd > -4)
+        ) {
             return tempImages.slice(currListInd).concat(tempImages.slice(0, 4 + currListInd - tempImages.length));
         }
         return tempImages.slice(currListInd, currListInd + 4);
