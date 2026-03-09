@@ -1,0 +1,72 @@
+.profile-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.profile-sidebar {
+  flex: 1;
+  max-width: 300px;
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  height: fit-content;
+  position: sticky;
+  top: 100px; /* Adjust based on navbar height */
+}
+
+.profile-main {
+  flex: 3;
+}
+
+/* The 3-Column Grid Logic */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.movie-card {
+  background: #222;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+}
+
+.movie-card p {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+  .profile-sidebar {
+    max-width: 100%;
+    position: static;
+  }
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .movie-grid {
+    grid-template-columns: 1fr;
+  }
+}
