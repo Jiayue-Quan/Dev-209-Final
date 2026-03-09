@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainPage from './components/MainPage'
 import Navbar from './components/Navbar'
+import MovieDetails from './components/MovieDetails'
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         
         <Route path="/" element={<MainPage/>}/>
+        <Route path="/movie/:id" element={<MovieDetails/>}/>
 
       </Routes>
     </BrowserRouter>
