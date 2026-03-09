@@ -1,0 +1,22 @@
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 98vw;
+    height: 7vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+
+    background-color: black;
+    color: white;
+    
+}
+
+#registerButton {
+    margin-right: 2vw;
+    padding: 8px 10px;
+}
