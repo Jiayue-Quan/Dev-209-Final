@@ -27,7 +27,7 @@ const extractToken = (authHeader) => {
     : authHeader;
 };
 
-app.get("/api/movie/:id", async (req, res) => {
+app.get("/movie/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -46,6 +46,25 @@ app.get("/api/movie/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch movie" });
   }
 });
+
+app.get("/movies/:genreId", async (req, res) => {
+  const { genreId } = req.params;
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.TMDB_TOKEN}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await response.json();
+    res.json(data);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to search movies by genre" });
+  }
+})
 
 const PORT = 3000;
 app.listen(PORT, () => {

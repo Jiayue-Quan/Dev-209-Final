@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import MainPage from './components/MainPage'
+import MainPage from './pages/MainPage'
 import Navbar from './components/Navbar'
-import MovieDetails from './components/MovieDetails'
+import MovieDetails from './pages/MovieDetails'
 
 function App() {
   
@@ -11,7 +11,6 @@ function App() {
     <BrowserRouter>
       <Navbar/>
       <Routes>
-        
         <Route path="/" element={<MainPage/>}/>
         <Route path="/movie/:id" element={<MovieDetails/>}/>
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import services from '../services/services'
+import Genre from '../components/Genre'
 
-const API_KEY = import.meta.env.VITE_TMDB_TOKEN;
- 
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
@@ -14,10 +14,9 @@ const MovieDetails = () => {
  
   useEffect(() => {
     // Fetch Movie Data and Trailer from TMDB
-    fetch(`http://localhost:3000/api/movie/${id}`)
-      .then(res => res.json())
-      .then(data => {setMovie(data)
-      });
+    services.getMovie(id).then(data => {
+      setMovie(data)
+    })
  
     // Check localStorage status
     const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
@@ -42,8 +41,9 @@ const MovieDetails = () => {
   return (
     <div className="movie-page">
       <h1>{movie.title} ({new Date(movie.release_date).getFullYear()})</h1>
-      <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
+      <img id="moviePoster" src={services.getImage(movie)}/>
       <p>Rating: ⭐ {movie.vote_average}</p>
+      {movie.genres.map(genre => <Genre key={`${genre.name}Tag`} genreId={genre.id} genre={genre.name}/>)}
      
  
       <div className="actions">
