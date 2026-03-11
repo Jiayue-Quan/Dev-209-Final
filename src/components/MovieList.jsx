@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import services from '../services/services'
 
-const MovieList = ({title}) => {
+const MovieList = ({title, toGet}) => {
     
-    const tempImages = ["./src/assets/1.jpg", "./src/assets/2.jpg", "./src/assets/3.jpg", "./src/assets/4.jpg", "./src/assets/5.jpg", "./src/assets/6.jpg"]
+    // let tempImages = ["./src/assets/1.jpg", "./src/assets/2.jpg", "./src/assets/3.jpg", "./src/assets/4.jpg", "./src/assets/5.jpg", "./src/assets/6.jpg"]
     //the index of the first poster shown on-screen (relative to the tempImages list)
     const [currListInd, setCurrListInd] = useState(0);
+    const [tempImages, setMoviePosters] = useState([])
+
+    useEffect(() => {
+        toGet().then(data => {
+            console.log(data)
+            const dataImages = data.results.map(movie => services.getImage(movie));
+            setMoviePosters(dataImages);
+            
+        });
+    }, [])
     
 
     const moveList = (next) => {

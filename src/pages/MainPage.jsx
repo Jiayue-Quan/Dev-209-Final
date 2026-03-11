@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import MovieList from '../components/MovieList'
 import Genre from '../components/Genre'
+import services from '../services/services'
 
 const MainPage = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     return (
         <>
-            <Genre genre="horror"/>
-            <MovieList title="Newest Movies"/>
+            
+            <MovieList title="Newest Movies" toGet={services.getNew}/>
             {loggedIn ? 
-            (<MovieList title="Recommended"/>) 
-            : (<MovieList title="Highly Rated"/>)
+            (<MovieList title="Recommended" toGet={services.getPopular}/>) 
+            : (<MovieList title="Popular" toGet={services.getPopular}/>)
             }
         </>
 

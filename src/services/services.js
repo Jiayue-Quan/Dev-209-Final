@@ -15,6 +15,16 @@ const getImage = (movie) => {
     return `https://image.tmdb.org/t/p/original${posterURL}`;
 }
 
+const getPopular = async () => {
+    const res = await fetch(`${baseURL}/api/movies/popular.desc`)
+    return res.json();
+}
+
+const getNew = async () => {
+    const res = await fetch(`${baseURL}/api/movies/primary_release_date.desc`)
+    return res.json();
+}
 
 
-export default { searchByGenre, getImage, getMovie }
+
+export default { searchByGenre, getImage, getMovie, getPopular, getNew }
